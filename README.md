@@ -10,4 +10,5 @@
 
 **npm run serve** - to run project locally
 
+<img width="952" src="https://github.com/JustynaWiniarska/vue-chat/blob/main/src/assets/Screenshot.png" />
 
