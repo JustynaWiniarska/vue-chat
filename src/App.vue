@@ -45,8 +45,7 @@ export default {
 
 <template>
   <div>
-    <ConversationArea
-    />
+    <ConversationArea />
     <ComposeSection 
       @send-message="handleSendMessage($event)"
     />

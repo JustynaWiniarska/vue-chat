@@ -12,6 +12,18 @@ export default {
         this.$emit('send-message', this.message)
       }
       this.message=''
+    },
+    expandTextarea() {
+      const element = this.$refs.expndableTextarea
+      element.style.height = 'auto'
+      element.style.height = `${element.scrollHeight}px`
+
+      if (element.scrollHeight > 80) {
+        element.style.height = "80px"
+        element.style.overflowY = "scroll"
+      } else {
+        element.style.overflowY = "hidden"
+      }
     }
   }
 }
@@ -22,11 +34,13 @@ export default {
     class="compose-form"
     @submit.prevent="sendReply"
   >
-    <textarea 
+    <textarea
+      ref="expndableTextarea"
       placeholder="Type your message here"
-      rows="3"
+
       v-model="message"
       @keydown.enter.prevent="sendReply"
+      @input="expandTextarea"
     ></textarea>
     <button
       class="send-btn"
@@ -42,12 +56,14 @@ export default {
   display: flex;
   justify-content: space-between;
   margin-top: 12px;
-  height: 40px;
 }
 textarea {
   width: 100%;
   padding: 8px;
   font-size: 20px;
+  line-height: 1.4;
+  height: 26px;
+  max-height: 80px;
 }
 .send-btn {
   width: 60px;
