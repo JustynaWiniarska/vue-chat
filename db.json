@@ -1,4 +1,20 @@
 {
+  "users": [
+    {
+      "id": 23,
+      "firstName": "Bob",
+      "lastName": "Greatlance",
+      "thumbnail": "https://images.generated.photos/-xGFYXL6ts6pLJa6UKFheSLpVvkmH6sSbmHL7WfYMos/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MDA2MDc1LmpwZw.jpg",
+      "authenticated": false
+    },
+    {
+      "id": 48,
+      "firstName": "Jack",
+      "lastName": "Dowager",
+      "thumbnail": "https://images.generated.photos/S1STKILAq-VlqXK3Exeq78FZuY_oimmVFg96qBHE8N0/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NDA0NjE3LmpwZw.jpg",
+      "authenticated": true
+    }
+  ],
   "messages": [
     {
       "id": 1,

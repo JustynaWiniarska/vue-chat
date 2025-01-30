@@ -2,21 +2,41 @@
 export default {
   name: 'MessageBox',
   props: {
-    messagesData: {
+    messageData: {
+      type: Object,
+      required: true
+    },
+    authenticatedUser: {
+      type: Object,
+      required: true
+    },
+    otherUser: {
       type: Object,
       required: true
     }
   },
-  mounted() {
-    console.log('CHILD', this.messagesData)
+  computed: {
+    isMyUser() {
+      return this.authenticatedUser.firstName.toLowerCase() === this.messageData.from.toLowerCase() 
+    }
   }
 }
 </script>
 
 <template>
-  <div class="message-container">
-    <div class="thumbnail"></div>
-    <div class="message-bubble">message  </div>
+  <div :class='[
+    "message-container",
+    {"right-alignment": isMyUser}
+  ]'>
+    <div class="thumbnail">
+    </div>
+    <div 
+      :class='[
+        "message-bubble",
+        {"user-message": isMyUser}
+      ]'
+    >
+      {{messageData.message}}</div>
   </div>
 </template>
 
@@ -25,6 +45,10 @@ export default {
   display: flex;
   align-items: flex-end;
   padding: 20px;
+}
+
+.right-alignment {
+  flex-direction: row-reverse;
 }
 
 .thumbnail {
@@ -42,5 +66,11 @@ export default {
   width: fit-content;
   max-width: 60%;
   text-align: left;
+}
+
+.user-message {
+  margin-left: auto;
+  background-color: lightblue;
+  margin-right: 12px;
 }
 </style>
