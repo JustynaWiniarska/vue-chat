@@ -37,7 +37,6 @@ export default {
     <textarea
       ref="expndableTextarea"
       placeholder="Type your message here"
-
       v-model="message"
       @keydown.enter.prevent="sendReply"
       @input="expandTextarea"

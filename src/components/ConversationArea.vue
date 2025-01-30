@@ -34,7 +34,6 @@ export default {
         // define users:
         if (this.users.length) {
           this.authenticatedUser = Object.values(this.users).find(user => user.authenticated === true)
-
           this.secondUser = Object.values(this.users).find(user => user.authenticated === false)
         }
 
@@ -86,7 +85,7 @@ export default {
 <style lang="css" scoped>
 .conversation-container {
   border: 2px solid gray;
-  max-height: calc(100vh - 160px);
+  max-height: calc(100vh - 100px);
   overflow-y: scroll;
 }
 </style>
