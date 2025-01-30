@@ -16,7 +16,7 @@ export default {
     async postNewMessage(message) {
       const newMessage = {
         id: Date.now(),
-        from:'placeholder',
+        from:'jack',
         message,
         date: new Date()
       }
@@ -28,6 +28,7 @@ export default {
         })
       })
     }
+
 
 
   }

@@ -8,7 +8,9 @@ export default {
   },
   methods: {
     sendReply() {
-      this.$emit('send-message', this.message)
+      if (this.message !== '') {
+        this.$emit('send-message', this.message)
+      }
       this.message=''
     }
   }

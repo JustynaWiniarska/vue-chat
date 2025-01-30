@@ -17,6 +17,15 @@ export default {
     this.fetchUsers()
     this.fetchMessages()
   },
+  watch: {
+    messages (newVal) {
+      if (newVal) {
+        this.fetchMessages()
+        this.scrollToBottom()
+      }
+    },
+    deep: true
+  },
   methods: {
     async fetchUsers() {
       try {
@@ -29,7 +38,7 @@ export default {
 
           this.secondUser = Object.values(this.users).find(user => user.authenticated === false)
         }
-        
+
         if (!response.ok) {
           throw new Error('Failed to fetch users')
         }
@@ -50,13 +59,25 @@ export default {
       catch (e) {
         console.error('Error fetching messages: ', e)
       }
-    }
+    },
+    scrollToBottom() {
+      const element = document.querySelector('.conversation-container')
+      if (element) {
+        element.scrollTo({
+          top: element.scrollHeight,
+          behavior: 'smooth'
+        })
+      }
+    },
   }
 }
 </script>
 
 <template>
-  <div class="conversation-container">
+  <div 
+    ref="conversationContainer"
+    class="conversation-container"
+  >
     <div v-if="messages && messages.length">
       <div
         v-for="message in messages"
