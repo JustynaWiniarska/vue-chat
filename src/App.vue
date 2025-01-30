@@ -1,6 +1,7 @@
 <template>
   <div>
-    <ConversationArea />
+    <ConversationArea
+    />
   </div>
 </template>
 
@@ -11,16 +12,8 @@ export default {
   name: 'App',
   components: {
     ConversationArea
-  },
-  mounted() {
-    this.fetchData()
-  },
-  methods: {
-    async fetchData() {
-      const response = await fetch('http://localhost:3001/messages')
-      console.log(response.json())
-    }
   }
+
 }
 </script>
 

@@ -1,6 +1,15 @@
 <script>
 export default {
   name: 'MessageBox',
+  props: {
+    messagesData: {
+      type: Object,
+      required: true
+    }
+  },
+  mounted() {
+    console.log('CHILD', this.messagesData)
+  }
 }
 </script>
 
