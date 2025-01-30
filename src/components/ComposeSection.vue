@@ -17,6 +17,8 @@ export default {
       const element = this.$refs.expndableTextarea
       element.style.height = 'auto'
       element.style.height = `${element.scrollHeight}px`
+      const conversationElement = document.querySelector('.conversation-container')
+      conversationElement.style.height = 'calc(100vh - 130px)'
 
       if (element.scrollHeight > 80) {
         element.style.height = "80px"
@@ -54,14 +56,15 @@ export default {
 .compose-form {
   display: flex;
   justify-content: space-between;
-  margin-top: 12px;
+  margin: 12px 0;
 }
 textarea {
   width: 100%;
   padding: 8px;
   font-size: 20px;
   line-height: 1.4;
-  height: 26px;
+  height: auto;
+  min-height: 26px;
   max-height: 80px;
 }
 .send-btn {

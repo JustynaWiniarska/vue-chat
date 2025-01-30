@@ -85,7 +85,7 @@ export default {
 <style lang="css" scoped>
 .conversation-container {
   border: 2px solid gray;
-  max-height: calc(100vh - 100px);
+  max-height: calc(100vh - 110px);
   overflow-y: scroll;
 }
 </style>
