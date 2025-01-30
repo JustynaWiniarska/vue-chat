@@ -1,24 +1,13 @@
 # vue-chat
 
-## Project setup
-```
-npm install
-```
+#### Uses Mock API server. Data is stored in db.json file.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+**npm run server** - to start server
+ 
+##### Endpoints:
+- http://localhost:3001/users
+- http://localhost:3001/messages
 
-### Compiles and minifies for production
-```
-npm run build
-```
+**npm run serve** - to run project locally
 
-### Lints and fixes files
-```
-npm run lint
-```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
