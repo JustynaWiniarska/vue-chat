@@ -24,10 +24,12 @@ export default {
         this.users = await response.json()
 
         // define users:
-        this.authenticatedUser = Object.values(this.users).find(user => user.authenticated === true)
+        if (this.users.length) {
+          this.authenticatedUser = Object.values(this.users).find(user => user.authenticated === true)
 
-        this.secondUser = Object.values(this.users).find(user => user.authenticated === false)
-
+          this.secondUser = Object.values(this.users).find(user => user.authenticated === false)
+        }
+        
         if (!response.ok) {
           throw new Error('Failed to fetch users')
         }
@@ -67,7 +69,6 @@ export default {
       />
     </div>
     </div>
-    
   </div>
 </template>
 

@@ -1,21 +1,48 @@
-<template>
-  <div>
-    <ConversationArea
-    />
-  </div>
-</template>
-
 <script>
 import ConversationArea from './components/ConversationArea.vue';
+import ComposeSection from './components/ComposeSection.vue';
 
 export default {
   name: 'App',
   components: {
-    ConversationArea
-  }
+    ConversationArea,
+    ComposeSection
+  },
+  methods: {
+    handleSendMessage(message) {
+      this.postNewMessage(message)
 
+    },
+    async postNewMessage(message) {
+      const newMessage = {
+        id: Date.now(),
+        from:'placeholder',
+        message,
+        date: new Date()
+      }
+      await fetch('http://localhost:3001/messages', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          ...newMessage
+        })
+      })
+    }
+
+
+  }
 }
 </script>
+
+<template>
+  <div>
+    <ConversationArea
+    />
+    <ComposeSection 
+      @send-message="handleSendMessage($event)"
+    />
+  </div>
+</template>
 
 <style>
 #app {
