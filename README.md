@@ -10,5 +10,5 @@
 
 **npm run serve** - to run project locally
 
-<img width="952" src="https://github.com/JustynaWiniarska/vue-chat/blob/main/src/assets/screenshotImg.png" />
+I started implememting Vuex, but ran out of time. Will be happy to complete that part if given additional time.
 
