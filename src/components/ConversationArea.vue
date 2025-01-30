@@ -21,7 +21,6 @@ export default {
     messages (newVal) {
       if (newVal) {
         this.fetchMessages()
-        this.scrollToBottom()
       }
     },
     deep: true
@@ -59,16 +58,7 @@ export default {
       catch (e) {
         console.error('Error fetching messages: ', e)
       }
-    },
-    scrollToBottom() {
-      const element = document.querySelector('.conversation-container')
-      if (element) {
-        element.scrollTo({
-          top: element.scrollHeight,
-          behavior: 'smooth'
-        })
-      }
-    },
+    }
   }
 }
 </script>
@@ -96,7 +86,7 @@ export default {
 <style lang="css" scoped>
 .conversation-container {
   border: 2px solid gray;
-  height: 700px;
+  max-height: calc(100vh - 100px);
   overflow-y: scroll;
 }
 </style>

@@ -13,6 +13,16 @@ export default {
       this.postNewMessage(message)
 
     },
+    scrollToBottom() {
+      const element = document.querySelector('.conversation-container')
+      if (element) {
+        element.scrollTo({
+          top: element.scrollHeight,
+          behavior: 'smooth'
+        })
+      }
+      window.scrollTo(0, document.body.scrollHeight)
+    },
     async postNewMessage(message) {
       const newMessage = {
         id: Date.now(),
@@ -27,10 +37,8 @@ export default {
           ...newMessage
         })
       })
+      this.scrollToBottom()
     }
-
-
-
   }
 }
 </script>
@@ -52,6 +60,5 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
 }
 </style>
