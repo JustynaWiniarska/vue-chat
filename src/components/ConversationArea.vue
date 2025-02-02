@@ -1,63 +1,31 @@
 <script>
 import MessageBox from './MessageBox.vue';
+import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'App',
   components: {
     MessageBox
   },
-  data: () => {
-    return {
-      messages: [],
-      authenticatedUser: null,
-      secondUser: null
-    }
+  computed: {
+    ...mapState(['users', 'messages', 'authenticatedUser', 'secondUser'])
   },
   created() {
     this.fetchUsers()
     this.fetchMessages()
   },
   watch: {
-    messages (newVal) {
-      if (newVal) {
-        this.fetchMessages()
-      }
-    },
-    deep: true
+    messages: {
+      handler (newVal) {
+        if (newVal) {
+          this.fetchMessages()
+        }
+      },
+      deep: true
+    }
   },
   methods: {
-    async fetchUsers() {
-      try {
-        const response = await fetch('http://localhost:3001/users')
-        this.users = await response.json()
-
-        // define users:
-        if (this.users.length) {
-          this.authenticatedUser = Object.values(this.users).find(user => user.authenticated === true)
-          this.secondUser = Object.values(this.users).find(user => user.authenticated === false)
-        }
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch users')
-        }
-      }
-      catch (e) {
-        console.error('Error fetching users: ', e)
-      }
-    },
-    async fetchMessages() {
-      try {
-        const response = await fetch('http://localhost:3001/messages')
-        this.messages = await response.json()
-
-        if (!response.ok) {
-          throw new Error('Failed to fetch messages')
-        }
-      }
-      catch (e) {
-        console.error('Error fetching messages: ', e)
-      }
-    }
+    ...mapActions(['fetchUsers', 'fetchMessages'])
   }
 }
 </script>
@@ -73,8 +41,6 @@ export default {
         :key="message.id"
       >
       <MessageBox
-        :authenticated-user="authenticatedUser"
-        :other-user="secondUser"
         :message-data="message"
       />
     </div>

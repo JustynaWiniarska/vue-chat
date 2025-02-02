@@ -1,21 +1,16 @@
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'MessageBox',
   props: {
     messageData: {
       type: Object,
       required: true
-    },
-    authenticatedUser: {
-      type: Object,
-      required: true
-    },
-    otherUser: {
-      type: Object,
-      required: true
     }
   },
   computed: {
+    ...mapGetters(['authenticatedUser', 'secondUser']),
     isMyUser() {
       return this.authenticatedUser?.firstName.toLowerCase() === this.messageData?.from.toLowerCase() 
     },
@@ -23,7 +18,7 @@ export default {
       if (this.isMyUser) {
         return this.authenticatedUser?.thumbnail
       } else if (!this.isMyUser) {
-        return this.otherUser?.thumbnail
+        return this.secondUser?.thumbnail
       }
       // returns placeholder the above condition fails:
       return 'https://media.istockphoto.com/id/1398772463/photo/portrait-golden-retriever-puppy-dog-showing-teeth-and-tongue-looking-away-isolated-on-blue.jpg?s=612x612&w=0&k=20&c=qDlOwTsnScV68vHZ-eY_G96S7SkGXW6jCbYSreq1Xtk='
