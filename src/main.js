@@ -48,7 +48,24 @@ const store = createStore({
       catch (e) {
         console.error('Error fetching messages: ', e)
       }
+    },
+    async postNewMessage({ commit, state }, message) {
+      const newMessage = {
+        id: Date.now(),
+        from: 'jack',
+        message,
+        date: new Date()
+      }
+      await fetch('http://localhost:3001/messages', {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({
+          ...newMessage
+        })
+      })
+      commit('setMessages', [...state.messages, newMessage])
     }
+
   },
   getters: {
     messages: state => state.messages,

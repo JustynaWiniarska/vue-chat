@@ -12,7 +12,11 @@ export default {
   computed: {
     ...mapGetters(['authenticatedUser', 'secondUser']),
     isMyUser() {
-      return this.authenticatedUser?.firstName.toLowerCase() === this.messageData?.from.toLowerCase() 
+      return (
+        this.authenticatedUser?.firstName &&
+        this.messageData?.from && 
+        this.authenticatedUser.firstName.toLowerCase() === this.messageData.from.toLowerCase()
+      )
     },
     imageSrc() {
       if (this.isMyUser) {

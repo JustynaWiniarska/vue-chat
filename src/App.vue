@@ -9,9 +9,9 @@ export default {
     ComposeSection
   },
   methods: {
-    handleSendMessage(message) {
-      this.postNewMessage(message)
-
+    async handleSendMessage(message) {
+      await this.$store.dispatch('postNewMessage', message)
+      this.scrollToBottom()
     },
     scrollToBottom() {
       const element = document.querySelector('.conversation-container')
@@ -22,22 +22,6 @@ export default {
         })
       }
       window.scrollTo(0, document.body.scrollHeight)
-    },
-    async postNewMessage(message) {
-      const newMessage = {
-        id: Date.now(),
-        from:'jack',
-        message,
-        date: new Date()
-      }
-      await fetch('http://localhost:3001/messages', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          ...newMessage
-        })
-      })
-      this.scrollToBottom()
     }
   }
 }
