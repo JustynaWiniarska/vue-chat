@@ -10,5 +10,3 @@
 
 **npm run serve** - to run project locally
 
-I started implememting Vuex, but ran out of time. Will be happy to complete that part if given additional time.
-
